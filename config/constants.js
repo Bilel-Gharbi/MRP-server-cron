@@ -11,5 +11,8 @@ module.exports = {
   env: process.env.NODE_ENV,
   port: process.env.PORT,
   apiUsersUrl: `${process.env.API_ENDPOINT}/stake/users/transactions`,
+  apiUserUpdateUrl: `${process.env.API_ENDPOINT}/stake/user`,
+  apiUserBalance: `${process.env.API_ENDPOINT}/stake/account`,
+  apiUpdateConstants: `${process.env.API_ENDPOINT}/stake/constants`,
   logs: process.env.NODE_ENV === "prod" ? "combined" : "dev",
 };
