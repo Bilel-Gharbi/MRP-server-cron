@@ -6,8 +6,10 @@ const server = express();
 const cron = require("node-schedule");
 const { queue } = require("./utils/Queue");
 
-cron.scheduleJob("0 */4 * * *", (time) => {
-  console.log("hello cron 4 h");
+// cron.scheduleJob("0 */4 * * *", (time) => {
+cron.scheduleJob("*/15 * * * *", (time) => {
+  // console.log("hello cron 4 h");
+  console.log("hello cron 15 min");
   queue.addToQueue("runner");
 });
 

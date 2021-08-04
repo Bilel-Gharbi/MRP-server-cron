@@ -5,13 +5,15 @@ class Queue {
     // this.invest = require("./invest");
     // this.createAccount = require("./createAccount");
     this.runner = require("../cron").runner;
-    // this.lunchTasks();
+
+    // console.log(this.runner);
+    this.lunchTasks();
   }
 
   async addToQueue(data = "") {
     const length = await redisClient.pushAsync(["queue", data]);
-    console.log(length);
-    console.log(data, "Added !!");
+    // console.log(length);
+    console.log(data, "Added !!" + Date.now());
     if (length === 1) {
       this.lunchTasks().catch((err) => {
         console.log("err", err);
@@ -45,8 +47,8 @@ class Queue {
         this.queueLength(),
         this.exists(),
       ]);
-      console.log(exists);
-      console.log(length);
+      // console.log(exists);
+      // console.log(length);
       if (!exists || !length) {
         return this.closeQueue();
       }

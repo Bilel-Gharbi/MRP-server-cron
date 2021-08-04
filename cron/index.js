@@ -18,7 +18,6 @@ const getUsersAddress = async () => {
 };
 
 const runner = async () => {
-  console.log("hello");
   let promises = await getUsersAddress();
   let addressArray = await Promise.all(promises);
 
