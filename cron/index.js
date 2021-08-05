@@ -30,6 +30,8 @@ const runner = async () => {
     );
     await sleep(2000);
 
+    const totalWalletToken = data.result / 10 ** 9;
+
     // const {
     //   data: { result: addressHistory },
     // } = await axios.get(
@@ -38,7 +40,7 @@ const runner = async () => {
     // console.log("2");
     // console.log(addressHistory);
 
-    if (data.result < totalUserStakedAmount) {
+    if (totalWalletToken.toFixed() > totalUserStakedAmount.toFixed()) {
       console.log("condition");
       await Promise.all([
         axios.patch(apiUserUpdateUrl, {
