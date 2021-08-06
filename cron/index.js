@@ -18,8 +18,11 @@ const getUsersAddress = async () => {
 };
 
 const runner = async () => {
+  console.log("script start");
   let promises = await getUsersAddress();
   let addressArray = await Promise.all(promises);
+
+  console.log(addressArray);
 
   for (let i = 0; i < addressArray.length; i++) {
     let address = addressArray[i].address;
@@ -32,15 +35,12 @@ const runner = async () => {
 
     const totalWalletToken = data.result / 10 ** 9;
 
-    // const {
-    //   data: { result: addressHistory },
-    // } = await axios.get(
-    //   `https://api.bscscan.com/api?module=account&action=txlist&sort=desc&apikey=YourApiKeyToken&address=${address}`
-    // );
-    // console.log("2");
-    // console.log(addressHistory);
+    // console.log(totalWalletToken);
+    // console.log(totalWalletToken.toFixed());
+    // console.log(totalUserStakedAmount);
+    // console.log(totalUserStakedAmount.toFixed());
 
-    if (totalWalletToken.toFixed() > totalUserStakedAmount.toFixed()) {
+    if (totalWalletToken < totalUserStakedAmount.toFixed()) {
       console.log("condition");
       await Promise.all([
         axios.patch(apiUserUpdateUrl, {
